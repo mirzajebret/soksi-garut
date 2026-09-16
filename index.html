@@ -4,7 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SOKSI Kabupaten Garut — Padamu Negeri Kami Mengabdi</title>
+  <title>SOKSI Kabupaten Garut</title>
+  <link rel="icon" type="image/x-icon" href="img/logo_soksi.png">
+  <link rel="apple-touch-icon" href="img/logo_soksi.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -361,13 +363,17 @@
       padding: 0 40px;
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
-      align-items: center;
+      align-items: stretch;
       gap: 20px;
       width: 100%;
     }
 
     .hero-copy {
       padding: 60px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
     }
 
     .hero-logo {
@@ -492,18 +498,16 @@
     .hero-photo {
       position: relative;
       width: 100%;
-      max-width: 420px;
-      aspect-ratio: 486/886;
-      margin-top: 40px;
+      max-width: 480px;
+      margin-top: 10px;
     }
 
     .hero-photo img {
-      position: absolute;
-      inset: 0;
+      position: static;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center;
+      height: auto;
+      object-fit: contain;
+      display: block;
     }
 
     .hero-photo .tint {
@@ -520,10 +524,7 @@
     }
 
     .hero-photo .frame {
-      position: absolute;
-      inset: 0;
-      border: 1px solid var(--line-strong);
-      pointer-events: none;
+      display: none;
     }
 
     .hero-photo .tag {
@@ -966,116 +967,165 @@
       padding-top: 5px;
     }
 
-    /* ===== STRUKTUR ===== */
-    .ketua-feature {
-      position: relative;
-      min-height: 560px;
-      border: 1px solid var(--line);
-      overflow: hidden;
-      margin-bottom: 24px;
-      display: flex;
-      align-items: flex-end;
+    /* ===== ARTIKEL PREVIEW ===== */
+    .artikel-grid {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr;
+      gap: 20px;
     }
 
-    .ketua-feature img {
+    .artikel-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: flex-end;
+      text-decoration: none;
+      cursor: pointer;
+      background: var(--black-2);
+    }
+
+    .artikel-card-featured {
+      min-height: 540px;
+    }
+
+    .artikel-card-side {
+      min-height: 260px;
+    }
+
+    .artikel-card img {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top center;
+      object-position: center;
+      transition: transform .7s var(--ease);
     }
 
-    .ketua-feature .scrim {
+    .artikel-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .artikel-card .overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(0deg, var(--black) 8%, rgba(10, 9, 8, .35) 45%, rgba(10, 9, 8, .05) 70%),
-        linear-gradient(90deg, rgba(10, 9, 8, .75) 0%, transparent 46%);
+      background:
+        linear-gradient(0deg, rgba(10, 4, 6, .92) 0%, rgba(10, 4, 6, .45) 45%, transparent 75%),
+        linear-gradient(90deg, rgba(10, 4, 6, .55) 0%, transparent 55%);
+      transition: opacity .4s ease;
     }
 
-    .ketua-feature .content {
+    .artikel-card:hover .overlay {
+      opacity: .85;
+    }
+
+    .artikel-card-content {
       position: relative;
       z-index: 2;
-      padding: 48px;
-      max-width: 520px;
+      padding: 36px;
+      width: 100%;
     }
 
-    .ketua-feature .eyebrow {
-      color: var(--gold);
+    .artikel-card-side .artikel-card-content {
+      padding: 24px 26px;
+    }
+
+    .artikel-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--red);
+      padding: 5px 12px;
       margin-bottom: 14px;
-    }
-
-    .ketua-feature h3 {
-      font-size: 2.4rem;
+      font-family: var(--font-label);
+      font-size: .64rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
       color: var(--bone);
     }
 
-    .ketua-feature .role {
-      font-family: var(--font-label);
-      font-size: .82rem;
-      letter-spacing: .06em;
+    .artikel-card h3 {
+      font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+      color: var(--bone);
+      line-height: 1.08;
       text-transform: uppercase;
-      color: var(--bone-dim);
-      margin-top: 8px;
-      margin-bottom: 18px;
+      font-family: var(--font-display);
+      transition: color .25s;
     }
 
-    .ketua-feature p {
-      font-size: .98rem;
-      line-height: 1.75;
-      color: var(--bone-dim);
-      max-width: 460px;
+    .artikel-card-side h3 {
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
     }
 
-    .staff-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
+    .artikel-card:hover h3 {
+      color: var(--gold);
     }
 
-    .staff-card {
-      background: var(--black-2);
-      padding: 34px 22px;
-      text-align: left;
-      transition: background .3s;
-    }
-
-    .staff-card:hover {
-      background: #181410;
-    }
-
-    .staff-card .ring {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      margin-bottom: 20px;
-      background: transparent;
-      border: 1px solid var(--line-strong);
+    .artikel-meta {
       display: flex;
       align-items: center;
-      justify-content: center;
-    }
-
-    .staff-card .ring svg {
-      width: 22px;
-      height: 22px;
-    }
-
-    .staff-card h5 {
+      gap: 14px;
+      margin-top: 12px;
       font-family: var(--font-label);
-      font-size: .86rem;
-      letter-spacing: .02em;
-      text-transform: uppercase;
-      color: var(--bone);
+      font-size: .72rem;
+      letter-spacing: .06em;
+      color: var(--bone-dim);
     }
 
-    .staff-card .role {
-      font-size: .8rem;
+    .artikel-meta .sep {
+      width: 3px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex: none;
+    }
+
+    .artikel-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      font-family: var(--font-label);
+      font-size: .76rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      transition: gap .25s;
+    }
+
+    .artikel-card-side .artikel-cta {
+      display: none;
+    }
+
+    .artikel-card:hover .artikel-cta {
+      gap: 14px;
+    }
+
+    .artikel-side-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .artikel-see-all {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 36px;
+      font-family: var(--font-label);
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
       color: var(--bone-dim);
-      margin-top: 6px;
-      line-height: 1.5;
+      border-bottom: 1px solid var(--line-strong);
+      padding-bottom: 8px;
+      transition: color .25s, border-color .25s;
+    }
+
+    .artikel-see-all:hover {
+      color: var(--gold);
+      border-color: var(--gold);
     }
 
     /* ===== PROGRAM ===== */
@@ -1414,16 +1464,16 @@
         gap: 10px;
       }
 
-      .ketua-feature {
-        min-height: 460px;
+      .artikel-grid {
+        grid-template-columns: 1fr;
       }
 
-      .ketua-feature .content {
-        padding: 30px;
+      .artikel-card-featured {
+        min-height: 400px;
       }
 
-      .staff-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .artikel-card-side {
+        min-height: 220px;
       }
 
       .prog-grid {
@@ -1464,7 +1514,7 @@
     <a href="#tentang" data-sec="tentang"><span>Tentang</span></a>
     <a href="#nilai" data-sec="nilai"><span>Nilai</span></a>
     <a href="#visimisi" data-sec="visimisi"><span>Visi &amp; Misi</span></a>
-    <a href="#struktur" data-sec="struktur"><span>Struktur</span></a>
+    <a href="#artikel" data-sec="artikel"><span>Artikel</span></a>
     <a href="#program" data-sec="program"><span>Program</span></a>
     <a href="#bergabung" data-sec="bergabung"><span>Kontak</span></a>
   </nav>
@@ -1483,7 +1533,7 @@
         <a href="#tentang">Tentang</a>
         <a href="#nilai">Nilai</a>
         <a href="#visimisi">Visi&nbsp;&amp;&nbsp;Misi</a>
-        <a href="#struktur">Struktur</a>
+        <a href="#artikel">Artikel</a>
         <a href="#program">Program</a>
         <a href="#bergabung">Kontak</a>
       </nav>
@@ -1508,7 +1558,6 @@
         <div class="hero-photo">
           <img src="img/foto_tandang.png" alt="Tandang S, Ketua SOKSI Kabupaten Garut">
           <div class="fade"></div>
-          <div class="frame"></div>
           <div class="tag">
             <div class="name">Tandang S.</div>
             <div class="role">Ketua SOKSI Kab. Garut</div>
@@ -1663,53 +1712,60 @@
     </div>
   </section>
 
-  <!-- ============ STRUKTUR ============ -->
-  <section id="struktur">
+  <!-- ============ ARTIKEL PREVIEW ============ -->
+  <section id="artikel">
     <div class="wrap">
       <div class="sec-head reveal">
-        <div class="eyebrow">Kepengurusan</div>
-        <h2>Struktur SOKSI Kab. Garut</h2>
+        <div class="eyebrow">Berita &amp; Artikel</div>
+        <h2>Informasi Terkini</h2>
+        <p>Ikuti perkembangan kegiatan, berita, dan kiprah SOKSI Kabupaten Garut di kancah daerah dan nasional.</p>
       </div>
-      <div class="ketua-feature reveal">
-        <img src="img/foto_tandang.png" alt="Tandang S">
-        <div class="scrim"></div>
-        <div class="content">
-          <div class="eyebrow">Ketua Umum</div>
-          <h3>Tandang S</h3>
-          <div class="role">Ketua SOKSI Kabupaten Garut</div>
-          <p>Memimpin konsolidasi organisasi di 27 kecamatan, menggerakkan kaderisasi, dan menjadi jembatan aspirasi
-            karyawan swadiri Garut kepada pemangku kepentingan daerah.</p>
-        </div>
-      </div>
-      <div class="staff-grid reveal">
-        <div class="staff-card">
-          <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="#F0B429" stroke-width="1.6">
-              <path d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 20c1.5-4 5-6 8-6s6.5 2 8 6" />
-            </svg></div>
-          <h5>Sekretaris Umum</h5>
-          <div class="role">Administrasi &amp; Kesekretariatan</div>
-        </div>
-        <div class="staff-card">
-          <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="#F0B429" stroke-width="1.6">
-              <path d="M3 17l6-6 4 4 8-8M21 7v6h-6" />
-            </svg></div>
-          <h5>Bendahara Umum</h5>
-          <div class="role">Keuangan &amp; Aset Organisasi</div>
-        </div>
-        <div class="staff-card">
-          <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="#F0B429" stroke-width="1.6">
-              <path
-                d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m5-5.13a4 4 0 100-8 4 4 0 000 8zm7 1a4 4 0 100-8" />
-            </svg></div>
-          <h5>Bidang Kaderisasi</h5>
-          <div class="role">Pembinaan Anggota Baru</div>
-        </div>
-        <div class="staff-card">
-          <div class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="#F0B429" stroke-width="1.6">
-              <path d="M4 4h16v12H8l-4 4V4z" />
-            </svg></div>
-          <h5>Bidang Humas</h5>
-          <div class="role">Komunikasi &amp; Kemitraan</div>
+      <div class="artikel-grid reveal">
+        <!-- Artikel Utama -->
+        <a href="artikel/010926-Musda-Golkar-Garut-Aris-Vs-Syakur-Siapa-Kantungi-Diskresi-DPP.html"
+          class="artikel-card artikel-card-featured">
+          <img src="img/gambar-artikel/artikel-thumb-1.png" alt="Musda Golkar Garut, Aris Vs Syakur">
+          <div class="overlay"></div>
+          <div class="artikel-card-content">
+            <div class="artikel-tag">★ Terbaru</div>
+            <h3>Musda Golkar Garut, Aris Vs Syakur Siapa Kantungi Diskresi DPP</h3>
+            <div class="artikel-meta">
+              <span>1 September 2026</span>
+              <span class="sep"></span>
+              <span>inijabar.com</span>
+            </div>
+            <div class="artikel-cta">Baca Selengkapnya <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M13 5l7 7-7 7" />
+              </svg></div>
+          </div>
+        </a>
+        <!-- Artikel Samping -->
+        <div class="artikel-side-stack">
+          <a href="artikel/220826-SOKSI-Garut-Bergerak-Serahkan-Surat-Soal-Musda-ke-DPD-Jabar-Priangan-Insider.html"
+            class="artikel-card artikel-card-side">
+            <img src="img/gambar-artikel/artikel-thumb-2.png" alt="SOKSI Garut Bergerak">
+            <div class="overlay"></div>
+            <div class="artikel-card-content">
+              <div class="artikel-tag">Organisasi</div>
+              <h3>SOKSI Garut Bergerak, Serahkan Surat Soal Musda ke DPD Jabar</h3>
+              <div class="artikel-meta">
+                <span>22 Agustus 2026</span>
+                <span class="sep"></span>
+                <span>Priangan Insider</span>
+              </div>
+            </div>
+          </a>
+          <div class="artikel-card artikel-card-side" style="cursor:default;">
+            <div class="overlay" style="background:rgba(10,4,6,.75);"></div>
+            <div class="artikel-card-content"
+              style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start;min-height:260px;">
+              <div class="artikel-tag" style="background:var(--black-2);border:1px solid var(--line-strong);">Segera
+                Hadir</div>
+              <h3 style="color:var(--bone-dim);font-size:1rem;">Artikel berikutnya sedang disiapkan…</h3>
+              <div class="artikel-meta" style="margin-top:8px;">Pantau terus halaman ini</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1820,7 +1876,7 @@
           <a href="#tentang">Tentang Kami</a>
           <a href="#nilai">Nilai Landasan</a>
           <a href="#visimisi">Visi &amp; Misi</a>
-          <a href="#struktur">Struktur Organisasi</a>
+          <a href="#artikel">Artikel &amp; Berita</a>
           <a href="#program">Program Kerja</a>
         </div>
         <div class="foot-col">
